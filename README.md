@@ -1,32 +1,48 @@
-pyHountyBunter
-----------------------------------------
+# pyHountyBunter
+===================================
 
-This Python app allows you to extract text information from multiple images and compare it against a set of usernames stored in a text file.
+The Image Username Detector is a Python script that uses the PIL (Python Imaging Library) and pytesseract libraries to extract text from a set of images and search for specific usernames in the extracted text. The script prompts the user to select a folder containing the images and a dictionary file containing the usernames to search for. It also uses a configuration file to save the file paths for future use.
 
-### Requirements
+### Prerequisites
+-------------
 
-To run this app, you need to have the following Python packages installed:
-
-*   Pillow
+*   Python 3.x
+*   Tesseract OCR binary
+*   PIL (Python Imaging Library)
 *   pytesseract
 *   tkinter
+*   json
+*   os
+
+### Installation
+------------
+
+1.  Clone or download the `pyHountyBunters` repository.
+2.  Install the necessary libraries by running the following command in the terminal:
+
+`pip install -r requirements.txt`
+
+3.  Install the Tesseract OCR binary. Instructions on how to do so can be found on the [Tesseract Wiki](https://github.com/tesseract-ocr/tesseract/wiki).
+    
+    *   For Windows users, download the Tesseract OCR binary installer from the [UB Mannheim website](https://github.com/UB-Mannheim/tesseract/wiki).
+    *   For Mac users, run the following command in the terminal:
+    
+    `brew install tesseract`
+    
+    *   For Linux users, run the following command in the terminal:
+    
+    `sudo apt install tesseract-ocr`
+    
 
 ### Usage
+-----
 
-PRE: Modify the source code coordinates for image cropping. Figuring out the coordinates are easy, simple use something like paint.net to hover over the frame of the playerlist to get the coords. 
+1.  Open the terminal and navigate to the directory where the `hounty.py` file is located.
+2.  Run the following command to execute the script:
 
-1.  Launch the app by running the script in a Python environment that has the required packages installed.
-    
-2.  When prompted, select one or more image files that contain the text information you want to extract.
-    
-3.  When prompted, select a text file that contains a list of usernames, with one username per line. This file will be used to compare against the extracted usernames.
-    
-4.  The app will then loop over the selected image files, crop them, and extract text information using the pytesseract library.
-    
-5.  The extracted text information will be compared against the list of usernames in the text file. If a match is found, the username will be displayed in the console output.
-    
+`python hounty.py`
 
-Note that the accuracy of the text extraction depends on the quality of the images and the clarity of the text. If the images are of low resolution or the text is blurry, the extracted text may not be accurate. Additionally, if the text has unusual fonts or is distorted, the text extraction accuracy may be affected.
+3.  Follow the prompts to select a folder containing image files and a dictionary file containing the usernames to search for.
 
 ### Important Note
 
@@ -38,6 +54,17 @@ We recommend that users carefully review the code and adjust the cropping coordi
 
 ![How to find coords for extraction.](coords.png "lmao")
 
-### License
+### Sample Output
+-------------
 
-This code is released under the MIT License. Please see the LICENSE file for details.
+
+
+### Contributing
+------------
+
+Contributions are welcome! Please feel free to open a pull request or submit an issue.
+
+### License
+-------
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
