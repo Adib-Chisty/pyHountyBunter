@@ -1,7 +1,7 @@
 # pyHountyBunter
-===================================
+---------------
 
-The Image Username Detector is a Python script that uses the PIL (Python Imaging Library) and pytesseract libraries to extract text from a set of images and search for specific usernames in the extracted text. The script prompts the user to select a folder containing the images and a dictionary file containing the usernames to search for. It also uses a configuration file to save the file paths for future use.
+This a Python script that uses the PIL (Python Imaging Library) and pytesseract libraries to extract text from a set of images and search for specific usernames in the extracted text. The script prompts the user to select a folder containing the images and a dictionary file containing the usernames to search for. It also uses a configuration file to save the file paths for future use.
 
 ### Prerequisites
 -------------
@@ -45,19 +45,19 @@ The Image Username Detector is a Python script that uses the PIL (Python Imaging
 3.  Follow the prompts to select a folder containing image files and a dictionary file containing the usernames to search for.
 
 ### Important Note
+Make sure to populate targets.txt with a new line seperated list of targets or point the program to a pre existing list.
 
-The code assumes that the area to be cropped from the image is known, and that the cropping coordinates are fixed. This means that the code may not work correctly with images of different resolutions or aspect ratios.
+The also code assumes that the area to be cropped from the image is known, and that the cropping coordinates are fixed. 
+To ensure that the code works correctly with your images, it's necessary to edit the cropping coordinates. The specific coordinates can be found using software like `Paint.net`
 
-To ensure that the code works correctly with your images, it's necessary to edit the cropping coordinates based on the resolution and aspect ratio of the images being processed. The specific coordinates will depend on the location and size of the area containing the text information to be extracted.
-
-We recommend that users carefully review the code and adjust the cropping coordinates to match the area containing the text in their specific images. This can be done by modifying the values of `x1`, `y1`, `x2`, and `y2` in the `image.crop()` method.
+We recommend that users carefully review the code and adjust the cropping coordinates to match the area containing the text in their specific images. This can be done by modifying the values of `x1`, `y1`, `x2`, and `y2` in the `image.crop()` method. The program defaults to screenshots of `2560x1440p`.
 
 ![How to find coords for extraction.](coords.png "lmao")
 
 ### Sample Output
 -------------
 
-
+TODO
 
 ### Contributing
 ------------
