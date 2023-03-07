@@ -13,6 +13,8 @@ To run this app, you need to have the following Python packages installed:
 
 ### Usage
 
+PRE: Modify the source code coordinates for image cropping. Figuring out the coordinates are easy, simple use something like paint.net to hover over the frame of the playerlist to get the coords. 
+
 1.  Launch the app by running the script in a Python environment that has the required packages installed.
     
 2.  When prompted, select one or more image files that contain the text information you want to extract.
@@ -33,6 +35,8 @@ The code assumes that the area to be cropped from the image is known, and that t
 To ensure that the code works correctly with your images, it's necessary to edit the cropping coordinates based on the resolution and aspect ratio of the images being processed. The specific coordinates will depend on the location and size of the area containing the text information to be extracted.
 
 We recommend that users carefully review the code and adjust the cropping coordinates to match the area containing the text in their specific images. This can be done by modifying the values of `x1`, `y1`, `x2`, and `y2` in the `image.crop()` method.
+
+![How to find coords for extraction.](coords.png "lmao")
 
 ### License
 
