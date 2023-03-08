@@ -52,6 +52,10 @@ To ensure that the code works correctly with your images, it's necessary to edit
 
 We recommend that users carefully review the code and adjust the cropping coordinates to match the area containing the text in their specific images. This can be done by modifying the values of `x1`, `y1`, `x2`, and `y2` in the `image.crop()` method. The program defaults to screenshots of `2560x1440p`.
 
+For 1080p use 
+`x1, y1 = 1475, 168`
+`x2, y2 = 1818, 860`
+
 ![How to find coords for extraction.](coords.png "lmao")
 
 ### Sample Output
