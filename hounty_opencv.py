@@ -4,6 +4,9 @@ import tkinter as tk
 from tkinter import filedialog
 import json
 import os
+import cv2
+import numpy as np
+from fuzzywuzzy import fuzz
 
 config_file_path = "config.json"
 
@@ -58,8 +61,11 @@ with open(dict_location) as f:
     usernames = set(username.strip().lower() for username in f)
 
 # Set custom Tesseract configuration options
-custom_config = r"--oem 3 --psm 3 -c tessedit_char_whitelist=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-"
+custom_config = r"--oem 3 --psm 6 -c tessedit_char_whitelist=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-"
 # custom_config = r"--oem 3 --psm 6"
+
+# Set fuzz matching threshold
+threshold = 65
 
 # Loop over the image files in the selected folder
 hits = 0
@@ -78,25 +84,30 @@ for filename in os.listdir(image_folder):
         x2, y2 = 2430, 1138
         cropped_image = image.crop((x1, y1, x2, y2))
 
+        # Convert the cropped image to grayscale
+        gray = cv2.cvtColor(np.array(cropped_image), cv2.COLOR_BGR2GRAY)
+
+        # Convert the image back to PIL Image format
+        pil_image = Image.fromarray(gray)
+
+
         # Extract text from the cropped image using pytesseract with custom configuration
         text = pytesseract.image_to_string(
-            gray, cropped_image, lang="eng", config=custom_config
+            pil_image, lang="eng", config=custom_config
         )
 
         # Convert the extracted text to lowercase
         text = text.lower()
 
-        # Compare the extracted usernames against the set of usernames
+        # Compare the extracted usernames against the set of usernames using fuzzy matching
         extracted_usernames = text.split()
-        for username in extracted_usernames:
-            if username.lower() in usernames:
-                hits += 1
-                print(
-                    "ALERT!! Found Hounty in file: ["
-                    + filename
-                    + "] with usrname: "
-                    + username
-                )
+        for extracted_username in extracted_usernames:
+            for username in usernames:
+                ratio = fuzz.token_sort_ratio(extracted_username, username)
+                if  ratio > threshold:
+                    hits += 1
+                    print(
+                        f"ALERT! Possible Match: {username} <-> {extracted_username} [match%={fuzz.token_sort_ratio(extracted_username, username)}]"
+                    )
 
 print(f"Found {hits} hits.")
-print("fin.")
